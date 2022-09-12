@@ -10,8 +10,7 @@ namespace Sudoku
     // Soduku Fields
 	  private int[,] sudokuBoard = new int[9,9];
 	  private int[] numberSet = {1, 2, 3, 4, 5, 6, 7, 8, 9};
-    private int[] zeroValuesCoordinate = new int[2]; 
-    int attempts = 0;
+    private int attempts = 0;
 	  
 		public static void Main(string[] args)
 		{
@@ -37,11 +36,7 @@ namespace Sudoku
       int[] firstRow = {1, 2, 3, 4, 5, 6, 7, 8, 9};
 
       var shuffledArray = firstRow.OrderBy(e => randomizer.NextDouble()).ToArray();
-
-      for(int i = 0; i < shuffledArray.Length; i++) {
-        this.sudokuBoard[0, i] = shuffledArray[i];
-      }
-
+      for(int i = 0; i < shuffledArray.Length; i++) this.sudokuBoard[0, i] = shuffledArray[i];
       this.attempts += 9;
     }
 
@@ -58,33 +53,26 @@ namespace Sudoku
     /// </returns>
     private bool generateSudokuBoard(int[,] currentBoardState) 
     {
-      try {
-        int xAxis, yAxis;
+      int xAxis, yAxis;
 
-        zeroValuesCoordinate = this.getEmptySpotCoordinate(currentBoardState);
+      int[] zeroValuesCoordinate = this.getEmptySpotCoordinate(currentBoardState);
 
-        if(Enumerable.SequenceEqual(this.zeroValuesCoordinate, new int[] {404, 404})) return true;
+      if(Enumerable.SequenceEqual(zeroValuesCoordinate, new int[] {404, 404})) return true;
 
-        xAxis = this.zeroValuesCoordinate[0];
-        yAxis = this.zeroValuesCoordinate[1];
-        
-        for(int number = 1; number < 10; number++) {
-          if(validateCoordinate(currentBoardState, number, new int[] {xAxis, yAxis})) {
-            currentBoardState[xAxis, yAxis] = number;
+      xAxis = zeroValuesCoordinate[0];
+      yAxis = zeroValuesCoordinate[1];
+      
+      for(int number = 1; number < 10; number++) {
+        if(validateCoordinate(currentBoardState, number, new int[] {xAxis, yAxis})) {
+          currentBoardState[xAxis, yAxis] = number;
 
-            if(generateSudokuBoard(currentBoardState)) return true;
+          if(generateSudokuBoard(currentBoardState)) return true;
 
-            currentBoardState[xAxis, yAxis] = 0;
-          }
+          currentBoardState[xAxis, yAxis] = 0;
         }
-
-        return false;
-      } catch (IOException e) {
-        // Extract some information from this exception, and then
-        // throw it to the parent method.
-        if (e.Source != null) Console.WriteLine("IOException source: {0}", e.Source);
-        throw;
       }
+
+      return false;
     }
     
     /// <summary>
