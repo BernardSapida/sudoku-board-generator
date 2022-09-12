@@ -1,0 +1,15 @@
+C:\Users\Bernard Sapida\Documents\sudoku-board-generator\bin\Debug\net6.0\SudokuOOP.exe
+C:\Users\Bernard Sapida\Documents\sudoku-board-generator\bin\Debug\net6.0\SudokuOOP.deps.json
+C:\Users\Bernard Sapida\Documents\sudoku-board-generator\bin\Debug\net6.0\SudokuOOP.runtimeconfig.json
+C:\Users\Bernard Sapida\Documents\sudoku-board-generator\bin\Debug\net6.0\SudokuOOP.dll
+C:\Users\Bernard Sapida\Documents\sudoku-board-generator\bin\Debug\net6.0\SudokuOOP.pdb
+C:\Users\Bernard Sapida\Documents\sudoku-board-generator\obj\Debug\net6.0\SudokuOOP.csproj.AssemblyReference.cache
+C:\Users\Bernard Sapida\Documents\sudoku-board-generator\obj\Debug\net6.0\SudokuOOP.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Bernard Sapida\Documents\sudoku-board-generator\obj\Debug\net6.0\SudokuOOP.AssemblyInfoInputs.cache
+C:\Users\Bernard Sapida\Documents\sudoku-board-generator\obj\Debug\net6.0\SudokuOOP.AssemblyInfo.cs
+C:\Users\Bernard Sapida\Documents\sudoku-board-generator\obj\Debug\net6.0\SudokuOOP.csproj.CoreCompileInputs.cache
+C:\Users\Bernard Sapida\Documents\sudoku-board-generator\obj\Debug\net6.0\SudokuOOP.dll
+C:\Users\Bernard Sapida\Documents\sudoku-board-generator\obj\Debug\net6.0\refint\SudokuOOP.dll
+C:\Users\Bernard Sapida\Documents\sudoku-board-generator\obj\Debug\net6.0\SudokuOOP.pdb
+C:\Users\Bernard Sapida\Documents\sudoku-board-generator\obj\Debug\net6.0\SudokuOOP.genruntimeconfig.cache
+C:\Users\Bernard Sapida\Documents\sudoku-board-generator\obj\Debug\net6.0\ref\SudokuOOP.dll
