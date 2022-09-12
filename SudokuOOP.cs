@@ -34,8 +34,8 @@ namespace Sudoku
     private void shuffleFirstRow() {
       var randomizer = new Random();
       int[] firstRow = {1, 2, 3, 4, 5, 6, 7, 8, 9};
-
       var shuffledArray = firstRow.OrderBy(e => randomizer.NextDouble()).ToArray();
+      
       for(int i = 0; i < shuffledArray.Length; i++) this.sudokuBoard[0, i] = shuffledArray[i];
       this.attempts += 9;
     }
@@ -54,7 +54,6 @@ namespace Sudoku
     private bool generateSudokuBoard(int[,] currentBoardState) 
     {
       int xAxis, yAxis;
-
       int[] zeroValuesCoordinate = this.getEmptySpotCoordinate(currentBoardState);
 
       if(Enumerable.SequenceEqual(zeroValuesCoordinate, new int[] {404, 404})) return true;
@@ -65,9 +64,7 @@ namespace Sudoku
       for(int number = 1; number < 10; number++) {
         if(validateCoordinate(currentBoardState, number, new int[] {xAxis, yAxis})) {
           currentBoardState[xAxis, yAxis] = number;
-
           if(generateSudokuBoard(currentBoardState)) return true;
-
           currentBoardState[xAxis, yAxis] = 0;
         }
       }
@@ -92,22 +89,16 @@ namespace Sudoku
       this.attempts++;
 
       for(int xCoordinate = 0; xCoordinate < 9; xCoordinate++) {
-        if (currentBoardState[coordinates[0], xCoordinate] == number && coordinates[1] != xCoordinate) {
-          return false;
-        }
+        if (currentBoardState[coordinates[0], xCoordinate] == number && coordinates[1] != xCoordinate) return false;
       }
 
       for(int yCoordinate = 0; yCoordinate < 9; yCoordinate++) {
-        if (currentBoardState[yCoordinate, coordinates[1]] == number && coordinates[0] != yCoordinate) {
-          return false;
-        }
+        if (currentBoardState[yCoordinate, coordinates[1]] == number && coordinates[0] != yCoordinate) return false;
       }
 
       for(int xy = boardXY*3; xy < boardXY*3 + 3; xy++) {
         for(int xx = boardXX * 3; xx < boardXX*3 + 3; xx++) {
-          if(currentBoardState[xy, xx] == number && coordinates != new int[] {xy, xx}) {
-            return false;
-          }
+          if(currentBoardState[xy, xx] == number && coordinates != new int[] {xy, xx}) return false;
         }
       }
 
@@ -158,6 +149,7 @@ namespace Sudoku
           if(currentBoardState[yCoordinate, xCoordinate] == 0) return new int[] {yCoordinate, xCoordinate};
         }
       }
+
       return new int[] {404, 404};
     }
     
