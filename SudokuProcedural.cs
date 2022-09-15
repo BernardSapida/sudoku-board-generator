@@ -18,10 +18,11 @@ namespace Sudoku
       // SHUFFLE ARRAY START
       Random randomizer = new Random();
       int[] shuffledArray = firstRow.OrderBy(e => randomizer.NextDouble()).ToArray();
-      for(int i = 0; i < shuffledArray.Length; i++) sudokuBoard[0, i] = shuffledArray[i];
+      for(int i = 0; i < firstRow.Length; i++) sudokuBoard[0, i] = shuffledArray[i];
       attempts += 9;
       // SHUFFLE ARRAY END
       
+      // GENERATE BOARD START
       while(true)
       {
         int row, column;
@@ -30,15 +31,17 @@ namespace Sudoku
         // FIND EMPTY SPOT START
         for(int yCoordinate = 0; yCoordinate < 9; yCoordinate++)
         {
+          if(zeroValuesCoordinate[0] != -1 && zeroValuesCoordinate[1] != -1) break;
+
           for(int xCoordinate = 0; xCoordinate < 9; xCoordinate++)
           {
             if(sudokuBoard[yCoordinate, xCoordinate] == 0) {
               zeroValuesCoordinate = new int[] {yCoordinate, xCoordinate};
               break;
             }
-          }
-          if(zeroValuesCoordinate[0] != -1 && zeroValuesCoordinate[1] != -1) break;
+          } 
         }
+        
         if(zeroValuesCoordinate[0] == -1 && zeroValuesCoordinate[1] == -1) zeroValuesCoordinate = new int[] {404, 404};
         // FIND EMPTY SPOT END
 
@@ -98,9 +101,12 @@ namespace Sudoku
           recordOfValidNumbers[row, column] = 0;
         }
       }
+      // GENERATE BOARD END
 
+      // PRINT ATTEMPTS START
       printAttempts:
-      Console.WriteLine("\nProgram took " + attempts + " attempts to generate sudoku board");
+      Console.WriteLine("\nProgram took " + attempts + " attempts to generate sudoku board:\n");
+      // PRINT ATTEMPTS END
 
       // PRINT BOARD START
       String sudokuBoardString = "\n";
@@ -121,7 +127,7 @@ namespace Sudoku
         }
       }
       // PRINT BOARD END
-      
+
       bool isValidSudokuBoard(int[,] board) 
       {
         int[] xCoordinate = new int[9];
@@ -152,7 +158,8 @@ namespace Sudoku
         return true;
       }
 
-      Console.WriteLine("\nValid Board: " + isValidSudokuBoard(sudokuBoard));
+      Console.WriteLine(isValidSudokuBoard(sudokuBoard));
+
     }
   }
 }
