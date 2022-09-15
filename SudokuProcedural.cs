@@ -5,24 +5,23 @@ using System.Text.RegularExpressions;
 
 namespace Sudoku
 {
-	public class SudokuFunctional
+	public class SudokuProcedural
 	{
 		public static void Main(string[] args)
 		{
       // Soduku Fields
       int[,] sudokuBoard = new int[9,9];
-      int[] firstRow = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+      int[] firstRow = {7,8,3,6,2,9,1,5,4};
       int[,] recordOfValidNumbers = new int[9,9];
       int attempts = 0;
 
-      // SHUFFLE ARRAY START
+      /* Shuffling the first row of the sudoku board. */
       Random randomizer = new Random();
       int[] shuffledArray = firstRow.OrderBy(e => randomizer.NextDouble()).ToArray();
       for(int i = 0; i < firstRow.Length; i++) sudokuBoard[0, i] = shuffledArray[i];
       attempts += 9;
-      // SHUFFLE ARRAY END
       
-      // GENERATE BOARD START
+      /* Generating the board. */
       while(true)
       {
         int row, column;
@@ -101,14 +100,11 @@ namespace Sudoku
           recordOfValidNumbers[row, column] = 0;
         }
       }
-      // GENERATE BOARD END
 
-      // PRINT ATTEMPTS START
       printAttempts:
-      Console.WriteLine("\nProgram took " + attempts + " attempts to generate sudoku board:\n");
-      // PRINT ATTEMPTS END
+        Console.WriteLine("\nProgram took " + attempts + " attempts to generate sudoku board:");
 
-      // PRINT BOARD START
+      /* Printing the board. */
       String sudokuBoardString = "\n";
       for(int yCoordinate = 0; yCoordinate < 9; yCoordinate++) 
       {
@@ -126,40 +122,6 @@ namespace Sudoku
           }
         }
       }
-      // PRINT BOARD END
-
-      bool isValidSudokuBoard(int[,] board) 
-      {
-        int[] xCoordinate = new int[9];
-        int[] yCoordinate = new int[9];
-        int[,] eachBox = new int[3, 3];
-
-        for (var i = 0; i < 9; i++)
-        {
-          for (var j = 0; j < 9; j++)
-          {
-            xCoordinate[i] += board[i, j];
-            yCoordinate[j] += board[i, j];
-            eachBox[i/3, j/3] += board[i, j];
-          }
-        }
-
-        for (int i=0; i < 3; i++) 
-        {
-          for (int j=0; j < 3; j++) 
-          {
-            if(eachBox[i, j] != 45) return false;
-          }
-        }
-
-        for (int i=0; i < 9; i++) if(xCoordinate[i] != 45) return false;
-        for (int i=0; i < 9; i++) if(yCoordinate[i] != 45) return false;
-
-        return true;
-      }
-
-      Console.WriteLine(isValidSudokuBoard(sudokuBoard));
-
     }
   }
 }
